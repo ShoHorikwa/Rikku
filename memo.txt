@@ -1,0 +1,8 @@
+#docker参考サイト
+https://crudzoo.com/blog/docker-postgres
+
+@TODO
+ユーザ権限の追加
+DBの作成
+テーブルの作成
+レコードの永続化処理
