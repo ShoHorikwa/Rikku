@@ -48,19 +48,6 @@ public class UserDriver {
         }
     }
 
-    private String makeInsertSQL(UserRequestDto userRequestDto) {
-        StringBuilder makedSQL = new StringBuilder();
-        makedSQL.append("Insert into experimental_db.person value(")
-                .append(99).append(",")
-                .append("\"").append(userRequestDto.getName()).append("\"").append(",")
-                .append( new Date(620611200000L)).append(",")
-                .append(99).append(",")
-                .append("\"").append(userRequestDto.getEmail()).append("\"")
-                .append(")");
-
-        return  makedSQL.toString();
-    }
-
 
     private List<User> toUserList(ResultSet rs) throws SQLException {
         List<User> userList = new ArrayList<>();

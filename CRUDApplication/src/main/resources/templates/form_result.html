@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<h1>新規登録結果</h1>
+<table border="1">
+    <tr>
+        <th>名前</th>
+        <th>メールアドレス</th>
+        <th>生年月日</th>
+    </tr>
+    <tr th:object="${UserRequestDto}">
+        <td>[[*{name}]]</td>
+        <td>[[*{email}]]</td>
+        <td>[[*{birthday}]]</td>
+    </tr>
+</table>
+</body>
+</html>

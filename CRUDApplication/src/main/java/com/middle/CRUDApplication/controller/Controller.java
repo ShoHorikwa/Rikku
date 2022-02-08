@@ -34,10 +34,10 @@ public class Controller {
      }
      @PostMapping("insert")
      public String insert(@ModelAttribute UserRequestDto userRequestDto, Model model) {
-        model.addAttribute("insert", userRequestDto);
+        model.addAttribute("UserRequestDto", userRequestDto);
         userUsecase.insert(userRequestDto);
 
-        return  "index";
+        return  "form_result";
      }
 
      @Data
