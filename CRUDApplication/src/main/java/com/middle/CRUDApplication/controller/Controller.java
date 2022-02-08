@@ -1,11 +1,12 @@
 package com.middle.CRUDApplication.controller;
 
 import com.middle.CRUDApplication.domein.User;
-import com.middle.CRUDApplication.port.UserPort;
 import com.middle.CRUDApplication.usecase.UserUsecase;
+import lombok.Data;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -22,22 +23,42 @@ public class Controller {
     @RequestMapping("/select")
     public String select(Model model) {
         List<User> userList =userUsecase.select();
-        model.addAttribute("select", userList);
+        model.addAttribute("userList", userList);
         return "select";
-
     }
 
-//    @RequestMapping("/create")
-//    public  String createUser(Model model) {
-//        model.addAttribute("modelValue", "Model Value!!");
-//        return "create_user";
-//    }
+     @GetMapping("/insert")
+    public  String form(Model model) {
+        model.addAttribute("UserRequestDto",new UserRequestDto());
+        return  "form";
+     }
+     @PostMapping("insert")
+     public String insert(@ModelAttribute UserRequestDto userRequestDto, Model model) {
+        model.addAttribute("insert", userRequestDto);
+        userUsecase.insert(userRequestDto);
 
-//    @RequestMapping("/user/insert")
-//    public String insert(Model model) {
-//        UserUsecase userUsecase = new UserUsecase();
-//        userUsecase.insert();
-//        return "insert_result";
-//    }
+        return  "index";
+     }
+
+     @Data
+     public class UserRequestDto implements Serializable {
+
+        private String name;
+        private String birthday;
+        private String email;
+
+
+         public String getName() {
+             return name;
+         }
+
+         public String getBirthday() {
+             return birthday;
+         }
+
+         public String getEmail() {
+             return email;
+         }
+     }
 
 }
