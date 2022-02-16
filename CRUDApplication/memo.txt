@@ -1,0 +1,9 @@
+・insettのエラーハンドリング
+・updateの実装
+・deleteの実装
+
+西川依頼
+・カラムの変更に伴うselectの修正
+・dockerファイルの修正
+・生年月日をdate型に変更する
+    >>form.html,insertの修正

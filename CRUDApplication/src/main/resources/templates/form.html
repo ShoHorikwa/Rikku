@@ -6,7 +6,7 @@
 
 <h1>ユーザ新規登録</h1>
 <body>
-    <form ction="#" th:action="@{/insert}" th:object="${UserRequestDto}" method="post">
+    <form th:action="@{/insert}" th:object="${UserRequestDto}" method="post">
         名前：<input type="text" th:field="*{name}"><br>
         生年月日：<input type="text" th:field="*{birthday}"><br>
         メールアドレス：<input type="text" th:field="*{email}"><br>

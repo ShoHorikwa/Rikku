@@ -8,6 +8,7 @@ import com.middle.CRUDApplication.port.UserPort;
 import java.util.List;
 
 public class UserUsecase {
+
     UserPort userPort;
 
     public List<User> select() {
@@ -15,9 +16,18 @@ public class UserUsecase {
         return  userPort.select();
     }
 
-    public void insert(UserRequestDto userRequestDto) {
+    public void insert(UserRequestDto userRequestDto) throws Exception {
         userPort = new UserGateway();
         userPort.insert(userRequestDto);
+    }
 
+    public User selectUser(String id) throws  Exception {
+        userPort = new UserGateway();
+        return  userPort.selectUser(id);
+    }
+
+    public void delete(String id) throws  Exception {
+        userPort = new UserGateway();
+        userPort.delete(id);
     }
 }

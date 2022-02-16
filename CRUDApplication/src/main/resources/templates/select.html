@@ -19,8 +19,12 @@
         <td th:text="${user.birthday}"></td>
         <td th:text="${user.age}"></td>
         <td th:text="${user.mail}"></td>
+        <td><a th:href="@{/detailUser(id=${user.id})}" class="btn btn-secondary">詳細</a></td>
     </tr>
 </table>
+<a href="http://localhost:8080/">
+    <button type="button">ホーム画面</button>
+</a>
 
 </body>
 </html>

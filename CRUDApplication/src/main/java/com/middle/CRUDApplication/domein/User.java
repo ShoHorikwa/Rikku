@@ -17,6 +17,8 @@ public class User {
         this.mail = email;
     }
 
+    public User() {}
+
     public int getId() {
         return id;
     }

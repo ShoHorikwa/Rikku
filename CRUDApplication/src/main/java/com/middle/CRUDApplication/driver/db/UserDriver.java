@@ -32,7 +32,7 @@ public class UserDriver {
         return  userList;
     }
 
-    public void insert(UserRequestDto userRequestDto) {
+    public void insert(UserRequestDto userRequestDto) throws Exception {
         try(Connection connection = DriverManager.getConnection(url, user, password);) {
             String sql = "insert into experimental_db.person value(?, ?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -44,7 +44,30 @@ public class UserDriver {
             preparedStatement.execute();
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new Exception(ex);
+        }
+    }
+
+    public User selectUser(String id) throws Exception {
+        try(Connection connection = DriverManager.getConnection(url, user, password);) {
+            String sql = "select * from experimental_db.person where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,id);
+            ResultSet rs =preparedStatement.executeQuery();
+            return toUserList(rs).get(0);
+        } catch (Exception ex) {
+            throw  new Exception(ex);
+        }
+    }
+
+    public void delete(String id) throws  Exception {
+        try(Connection connection = DriverManager.getConnection(url, user, password);) {
+            String sql = "delete from experimental_db.person where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,id);
+            preparedStatement.execute();
+        } catch (Exception ex) {
+            throw  new Exception(ex);
         }
     }
 

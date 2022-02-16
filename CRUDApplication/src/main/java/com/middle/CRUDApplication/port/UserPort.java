@@ -6,6 +6,8 @@ import com.middle.CRUDApplication.domein.User;
 import java.util.List;
 
 public interface UserPort {
-    void insert(UserRequestDto userRequestDto);
+    void insert(UserRequestDto userRequestDto) throws Exception;
     List<User> select();
+    User selectUser(String id) throws  Exception;
+    void delete(String id) throws  Exception;
 }

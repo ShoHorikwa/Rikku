@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<h1>ユーザ更新画面</h1>
+<div th:object="${user}">
+    <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">名前</div>
+        <div class="col pt-3 border">
+            <p th:text="*{name}"></p>
+        </div>
+    </div>
+    <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">生年月日</div>
+        <div class="col pt-3 border">
+            <p th:text="*{birthday}"></p>
+        </div>
+    </div>
+    <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">メールアドレス</div>
+        <div class="col pt-3 border">
+            <p th:text="*{mail}"></p>
+        </div>
+    </div>
+</div>
+<br />
+<div class="text-center">
+    <a th:href="@{/{id}/edit(id=*{id})}" class="btn btn-primary disabled" aria-disabled="true">　編集　</a>
+    <a th:href="@{/delete(id=${user.id})}" class="btn btn-secondary disabled" aria-disabled="true">　削除　</a>
+    <a href="/select" class="btn btn-secondary">一覧に戻る</a>
+</div>
+</div>
+
+
+<a href="http://localhost:8080/">
+    <button type="button">ホーム画面</button>
+</a>
+
+</body>
+</html>
