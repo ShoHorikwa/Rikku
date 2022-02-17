@@ -1,6 +1,7 @@
 package com.middle.CRUDApplication.driver.db;
 
 import com.middle.CRUDApplication.controller.Controller.UserRequestDto;
+import com.middle.CRUDApplication.controller.Controller.UserUpdateDto;
 import com.middle.CRUDApplication.domein.User;
 
 import java.sql.*;
@@ -66,6 +67,19 @@ public class UserDriver {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,id);
             preparedStatement.execute();
+        } catch (Exception ex) {
+            throw  new Exception(ex);
+        }
+    }
+
+    public void update(UserUpdateDto userUpdateDto) throws Exception {
+        try(Connection connection = DriverManager.getConnection(url, user, password);) {
+            String sql = "update experimental_db.person set name = ?, email = ? where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,userUpdateDto.getName());
+            preparedStatement.setString(2,userUpdateDto.getMail());
+            preparedStatement.setInt(3,userUpdateDto.getId());
+            preparedStatement.executeUpdate();
         } catch (Exception ex) {
             throw  new Exception(ex);
         }

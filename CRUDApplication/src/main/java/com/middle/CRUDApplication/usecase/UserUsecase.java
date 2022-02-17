@@ -1,6 +1,7 @@
 package com.middle.CRUDApplication.usecase;
 
 import com.middle.CRUDApplication.controller.Controller.UserRequestDto;
+import com.middle.CRUDApplication.controller.Controller.UserUpdateDto;
 import com.middle.CRUDApplication.domein.User;
 import com.middle.CRUDApplication.gateway.UserGateway;
 import com.middle.CRUDApplication.port.UserPort;
@@ -29,5 +30,10 @@ public class UserUsecase {
     public void delete(String id) throws  Exception {
         userPort = new UserGateway();
         userPort.delete(id);
+    }
+
+    public void update(UserUpdateDto userUpdateDto) throws Exception {
+        userPort = new UserGateway();
+        userPort.update(userUpdateDto);
     }
 }

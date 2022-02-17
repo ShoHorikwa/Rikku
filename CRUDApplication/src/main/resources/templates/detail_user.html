@@ -27,7 +27,7 @@
 </div>
 <br />
 <div class="text-center">
-    <a th:href="@{/{id}/edit(id=*{id})}" class="btn btn-primary disabled" aria-disabled="true">　編集　</a>
+    <a th:href="@{/edit(id=${user.id})}" class="btn btn-primary disabled" aria-disabled="true">　編集　</a>
     <a th:href="@{/delete(id=${user.id})}" class="btn btn-secondary disabled" aria-disabled="true">　削除　</a>
     <a href="/select" class="btn btn-secondary">一覧に戻る</a>
 </div>
