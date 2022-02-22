@@ -3,23 +3,25 @@ package com.middle.CRUDApplication.domein;
 import java.sql.Date;
 
 public class User {
-    private int id;
+    private String id;
     private String name;
     private Date birthday;
-    private int age;
     private String mail;
+    private String address;
+    private String telephone;
 
-    public User(int id, String name, Date birthday, int age,String email) {
+    public User(String id, String name, Date birthday, String email, String address, String telephone) {
         this.id = id;
         this.birthday = birthday;
-        this.age = age;
         this.name = name;
         this.mail = email;
+        this.address = address;
+        this.telephone = telephone;
     }
 
     public User() {}
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -31,9 +33,9 @@ public class User {
         return birthday;
     }
 
-    public int getAge() {
-        return age;
-    }
+    public String getAddress() { return address; }
+
+    public String getTelephone() { return telephone; }
 
     public String getMail() {
         return mail;

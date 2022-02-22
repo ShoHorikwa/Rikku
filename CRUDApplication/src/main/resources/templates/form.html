@@ -8,8 +8,10 @@
 <body>
     <form th:action="@{/insert}" th:object="${UserRequestDto}" method="post">
         名前：<input type="text" th:field="*{name}"><br>
-        生年月日：<input type="text" th:field="*{birthday}"><br>
+        生年月日：<input type="date" th:field="*{birthday}"><br>
         メールアドレス：<input type="text" th:field="*{email}"><br>
+        住所：<input type="text" th:field="*{address}"><br>
+        電話番号：<input type="text" th:field="*{telephone}"><br>
         <input type="submit" value="登録" class="btn">
     </form>
 </body>

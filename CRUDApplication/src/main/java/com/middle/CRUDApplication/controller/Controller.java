@@ -79,6 +79,8 @@ public class Controller {
             userUpdateDto.setName(user.getName());
             userUpdateDto.setBirthday(user.getBirthday());
             userUpdateDto.setMail(user.getMail());
+            userUpdateDto.setAddress(user.getAddress());
+            userUpdateDto.setTelephone(user.getTelephone());
             model.addAttribute("UserUpdateDto",userUpdateDto);
         } catch (Exception ex) {
             model.addAttribute("errMessage", ex.getMessage());
@@ -108,15 +110,19 @@ public class Controller {
         private String name;
         private String birthday;
         private String email;
+        private String address;
+        private String telephone;
     }
     @Data
     @Getter
     @Setter
     public class UserUpdateDto implements Serializable {
-        private  int id;
+        private String id;
         private String mail;
         private String name;
         private Date birthday;
+        private String address;
+        private String telephone;
     }
 
 }

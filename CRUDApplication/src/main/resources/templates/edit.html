@@ -12,6 +12,10 @@
     <br>
     メール：<input type="text" class="form-control" th:field="*{mail}">
     <br>
+    住所：<input type="text" class="form-control" th:field="*{address}">
+    <br>
+    電話番号：<input type="text" class="form-control" th:field="*{telephone}">
+    <br>
     <input type="submit" class="btn btn-primary" value="　保存　">
     <a th:href="@{/detailUser(id=*{id})}" class="btn btn-secondary">キャンセル</a>
 </form>
