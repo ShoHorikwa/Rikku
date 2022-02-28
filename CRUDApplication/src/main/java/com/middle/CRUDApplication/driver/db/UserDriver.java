@@ -13,9 +13,6 @@ import java.util.Properties;
 public class UserDriver {
 
     DataSource dataSource = new DataSource();
-//    private String url = dataSource.getUrl();
-//    private String user = dataSource.getUser();
-//    private String password = dataSource.getPassword();
     private String url = dataSource.getUrl();
     private String user = dataSource.getUsername();
     private String password = dataSource.getPassword();
@@ -34,16 +31,16 @@ public class UserDriver {
         return  userList;
     }
 
-    public void insert(UserRequestDto userRequestDto) throws Exception {
+    public void insert(User insertUser) throws Exception {
         try(Connection connection = DriverManager.getConnection(url, user, password);) {
             String sql = "insert into experimental_db.person value(?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,String.valueOf(UUID.randomUUID()));
-            preparedStatement.setString(2,userRequestDto.getName());
-            preparedStatement.setDate( 3,stringToDate(userRequestDto.getBirthday()));
-            preparedStatement.setString(4,userRequestDto.getAddress());
-            preparedStatement.setString(5,userRequestDto.getTelephone());
-            preparedStatement.setString(6,userRequestDto.getEmail());
+            preparedStatement.setString(1,insertUser.getId());
+            preparedStatement.setString(2,insertUser.getName());
+            preparedStatement.setDate( 3,insertUser.getBirthday());
+            preparedStatement.setString(4,insertUser.getAddress());
+            preparedStatement.setString(5,insertUser.getTelephone());
+            preparedStatement.setString(6,insertUser.getMail());
             preparedStatement.execute();
 
         } catch (Exception ex) {
@@ -74,7 +71,7 @@ public class UserDriver {
         }
     }
 
-    public void update(UserUpdateDto userUpdateDto) throws Exception {
+    public void update(User userUpdateDto) throws Exception {
         try(Connection connection = DriverManager.getConnection(url, user, password);) {
             String sql = "update experimental_db.person set name = ?, email = ?, address = ?, telephone = ? where id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -106,8 +103,4 @@ public class UserDriver {
         return  userList;
     }
 
-    public Date stringToDate(String birthday) {
-        Date format_date = Date.valueOf(birthday);
-        return format_date;
-    }
 }
