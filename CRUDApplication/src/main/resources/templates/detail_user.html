@@ -1,37 +1,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
 </head>
 <body>
-<h1>ユーザ更新画面</h1>
-<div th:object="${user}">
-    <table>
-        <tr>
-            <th>名前</th>
-            <td th:text="*{name}"></td>
-        </tr>
-        <tr>
-            <th>生年月日</th>
-            <td th:text="*{birthday}"></td>
-        </tr>
-        <tr>
-            <th>メールアドレス</th>
-            <td th:text="*{mail}"></td>
-        </tr>
-        <tr>
-            <th>住所</th>
-            <td th:text="*{address}"></td>
-        </tr>
-        <tr>
-            <th>電話番号</th>
-            <td th:text="*{telephone}"></td>
-        </tr>
+<div class="container">
+    <h1 class="my-3">ユーザ詳細</h1>
+    <hr class="mb-5">
+    <table class="table table-bordered border-secondary col-md-6">
+        <div th:object="${user}">
+            <tr>
+                <th class="table-primary">名前</th>
+                <td th:text="*{name}"></td>
+            </tr>
+            <tr>
+                <th class="table-primary">生年月日</th>
+                <td th:text="*{birthday}"></td>
+            </tr>
+            <tr>
+                <th class="table-primary">メールアドレス</th>
+                <td th:text="*{mail}"></td>
+            </tr>
+            <tr>
+                <th class="table-primary">住所</th>
+                <td th:text="*{address}"></td>
+            </tr>
+            <tr>
+                <th class="table-primary">電話番号</th>
+                <td th:text="*{telephone}"></td>
+            </tr>
+        </div>
     </table>
+    <a th:href="@{/edit(id=${user.id})}" class="btn btn-primary" aria-disabled="true">　編集　</a>
+    <a th:href="@{/delete(id=${user.id})}" class="btn btn btn-primary" aria-disabled="true">　削除　</a>
+    <a href="/select" class="btn btn btn-primary">一覧に戻る</a>
 </div>
-    <a th:href="@{/edit(id=${user.id})}" class="btn btn-primary disabled" aria-disabled="true">　編集　</a>
-    <a th:href="@{/delete(id=${user.id})}" class="btn btn-secondary disabled" aria-disabled="true">　削除　</a>
-    <a href="/select" class="btn btn-secondary">一覧に戻る</a>
-</div>
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
 </body>
 </html>

@@ -16,7 +16,7 @@ public class UserUsecase {
 
     public List<User> select() {
         userPort = new UserGateway();
-        return  userPort.select();
+        return userPort.select();
     }
 
     public void insert(UserRequestDto userRequestDto) throws Exception {
@@ -25,12 +25,12 @@ public class UserUsecase {
         userPort.insert(toUser(userRequestDto));
     }
 
-    public User selectUser(String id) throws  Exception {
+    public User selectUser(String id) throws Exception {
         userPort = new UserGateway();
-        return  userPort.selectUser(id);
+        return userPort.selectUser(id);
     }
 
-    public void delete(String id) throws  Exception {
+    public void delete(String id) throws Exception {
         userPort = new UserGateway();
         userPort.delete(id);
     }
@@ -41,10 +41,10 @@ public class UserUsecase {
     }
 
     private User toUser(UserRequestDto userRequestDto) {
-        return new User(String.valueOf(UUID.randomUUID()),userRequestDto.getName(), DateUtil.stringToDate(userRequestDto.getBirthday()),userRequestDto.getEmail(), userRequestDto.getAddress(), userRequestDto.getTelephone());
+        return new User(String.valueOf(UUID.randomUUID()), userRequestDto.getName(), DateUtil.stringToDate(userRequestDto.getBirthday()), userRequestDto.getEmail(), userRequestDto.getAddress(), userRequestDto.getTelephone());
     }
 
     private User toUser(UserUpdateDto userUpdateDto) {
-        return new User(userUpdateDto.getId(),userUpdateDto.getName(), userUpdateDto.getBirthday(),userUpdateDto.getMail(), userUpdateDto.getAddress(), userUpdateDto.getTelephone());
+        return new User(userUpdateDto.getId(), userUpdateDto.getName(), userUpdateDto.getBirthday(), userUpdateDto.getMail(), userUpdateDto.getAddress(), userUpdateDto.getTelephone());
     }
 }

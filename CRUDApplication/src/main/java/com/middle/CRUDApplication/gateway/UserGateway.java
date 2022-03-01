@@ -14,8 +14,8 @@ public class UserGateway implements UserPort {
 
     @Override
     public void insert(User insertUser) throws Exception {
-         userDriver = new UserDriver();
-         userDriver.insert(insertUser);
+        userDriver = new UserDriver();
+        userDriver.insert(insertUser);
 
     }
 
@@ -26,21 +26,20 @@ public class UserGateway implements UserPort {
     }
 
     @Override
-    public User selectUser(String id) throws  Exception{
+    public User selectUser(String id) throws Exception {
         userDriver = new UserDriver();
-        return  userDriver.selectUser(id);
+        return userDriver.selectUser(id);
     }
 
     @Override
-    public void delete(String id) throws  Exception {
+    public void delete(String id) throws Exception {
         userDriver = new UserDriver();
         userDriver.delete(id);
     }
 
     @Override
-    public void update(User updateUser) throws  Exception{
+    public void update(User updateUser) throws Exception {
         userDriver = new UserDriver();
         userDriver.update(updateUser);
-
     }
 }

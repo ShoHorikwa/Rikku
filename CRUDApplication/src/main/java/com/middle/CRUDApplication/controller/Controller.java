@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -31,17 +32,21 @@ public class Controller {
     @GetMapping("/insert")
     public String insertForm(Model model) {
         model.addAttribute("UserRequestDto", new UserRequestDto());
+        model.addAttribute("message", MESSAGE.INSERT_SUCCESS.getMessage());
         return "form";
     }
+
     @PostMapping("/insert")
     public String insert(@ModelAttribute UserRequestDto userRequestDto, Model model) {
         try {
             userUsecase.insert(userRequestDto);
+            model.addAttribute("UserRequestDto", userRequestDto);
+            model.addAttribute("message", MESSAGE.INSERT_SUCCESS.getMessage());
         } catch (Exception e) {
             model.addAttribute("errMessage", e.getMessage());
             return "err";
         }
-        model.addAttribute("UserRequestDto", userRequestDto);
+
         return "form_result";
     }
 
@@ -50,7 +55,7 @@ public class Controller {
         try {
             model.addAttribute("user", userUsecase.selectUser(id));
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             model.addAttribute("errMessage", e.getMessage());
             return "err";
         }
@@ -62,12 +67,13 @@ public class Controller {
         try {
             userUsecase.delete(id);
             model.addAttribute("userList", userUsecase.select());
+            model.addAttribute("message", MESSAGE.DELETE_SUCCESS.getMessage());
 
         } catch (Exception ex) {
             model.addAttribute("errMessage", ex.getMessage());
             return "err";
         }
-        return  "select";
+        return "select";
     }
 
     @GetMapping("/edit")
@@ -81,7 +87,7 @@ public class Controller {
             userUpdateDto.setMail(user.getMail());
             userUpdateDto.setAddress(user.getAddress());
             userUpdateDto.setTelephone(user.getTelephone());
-            model.addAttribute("UserUpdateDto",userUpdateDto);
+            model.addAttribute("UserUpdateDto", userUpdateDto);
         } catch (Exception ex) {
             model.addAttribute("errMessage", ex.getMessage());
             return "err";
@@ -90,16 +96,17 @@ public class Controller {
     }
 
     @RequestMapping("/update")
-    public String update(@RequestParam("id")String id, @ModelAttribute UserUpdateDto userUpdateDto,Model model) {
+    public String update(@RequestParam("id") String id, @ModelAttribute UserUpdateDto userUpdateDto, Model model) {
         try {
             userUsecase.update(userUpdateDto);
             model.addAttribute("userList", userUsecase.select());
+            model.addAttribute("message", MESSAGE.UPDATE_SUCCESS.getMessage());
 
         } catch (Exception ex) {
             model.addAttribute("errMessage", ex.getMessage());
             return "err";
         }
-        return  "select";
+        return "select";
     }
 
 
@@ -113,6 +120,7 @@ public class Controller {
         private String address;
         private String telephone;
     }
+
     @Data
     @Getter
     @Setter
@@ -123,6 +131,22 @@ public class Controller {
         private Date birthday;
         private String address;
         private String telephone;
+    }
+
+    enum MESSAGE {
+        INSERT_SUCCESS("登録に成功しました!!"),
+        DELETE_SUCCESS("削除に成功しました!!"),
+        UPDATE_SUCCESS("更新に成功しました!!"),
+        ;
+        String message;
+
+        MESSAGE(String message) {
+            this.message = message;
+        }
+        public String getMessage() {
+            return this.message;
+        }
+
     }
 
 }
