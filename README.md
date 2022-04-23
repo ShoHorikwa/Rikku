@@ -1,6 +1,10 @@
 # Rikku
 CRUD application on spring framework and easy docker image for postgress
 
+### docker参考サイト
+```zsh
+https://crudzoo.com/blog/docker-postgres
+```
 
 ### イメージのビルドとコンテナ起動
 ```zsh
