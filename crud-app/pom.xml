@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.middle</groupId>
-	<artifactId>CRUDApplication</artifactId>
+	<artifactId>crud-application</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>CRUDApplication</name>
+	<name>crud-application</name>
 	<description>CRUD Application in SpringBoot</description>
 	<properties>
 		<java.version>11</java.version>
