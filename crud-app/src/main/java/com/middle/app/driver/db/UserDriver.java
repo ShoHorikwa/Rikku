@@ -1,15 +1,14 @@
-package com.middle.CRUDApplication.driver.db;
+package com.middle.app.driver.db;
 
-import com.middle.CRUDApplication.controller.Controller.UserRequestDto;
-import com.middle.CRUDApplication.controller.Controller.UserUpdateDto;
-import com.middle.CRUDApplication.domein.User;
+import com.middle.app.domein.User;
+import com.middle.app.driver.db.entity.UserEntity;
+import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.util.Properties;
 
+@Service
 public class UserDriver {
 
     DataSource dataSource = new DataSource();
@@ -18,12 +17,12 @@ public class UserDriver {
     private String password = dataSource.getPassword();
 
 
-    public List<User> select() {
-        List<User> userList = null;
+    public List<UserEntity> select() {
+        List<UserEntity> userList = null;
         try(Connection connection = DriverManager.getConnection(url, user, password);) {
             PreparedStatement ps = connection.prepareStatement("select * from experimental_db.person;");
             ResultSet rs =ps.executeQuery();
-            userList = toUserList(rs);
+            userList = toUserEntityList(rs);
             
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -31,7 +30,7 @@ public class UserDriver {
         return  userList;
     }
 
-    public void insert(User insertUser) throws Exception {
+    public void insert(UserEntity insertUser) throws Exception {
         try(Connection connection = DriverManager.getConnection(url, user, password);) {
             String sql = "insert into experimental_db.person value(?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -48,13 +47,13 @@ public class UserDriver {
         }
     }
 
-    public User selectUser(String id) throws Exception {
+    public UserEntity selectUser(String id) throws Exception {
         try(Connection connection = DriverManager.getConnection(url, user, password);) {
             String sql = "select * from experimental_db.person where id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,id);
             ResultSet rs =preparedStatement.executeQuery();
-            return toUserList(rs).get(0);
+            return toUserEntityList(rs).get(0);
         } catch (Exception ex) {
             throw  new Exception(ex);
         }
@@ -87,8 +86,8 @@ public class UserDriver {
     }
 
 
-    private List<User> toUserList(ResultSet rs) throws SQLException {
-        List<User> userList = new ArrayList<>();
+    private List<UserEntity> toUserEntityList(ResultSet rs) throws SQLException {
+        List<UserEntity> userList = new ArrayList<>();
         while (rs.next()) {
             String id = rs.getString("id");
             String name = rs.getString("name");
@@ -97,8 +96,8 @@ public class UserDriver {
             String address = rs.getString("address");
             String telephone = rs.getString("telephone");
 
-            User user = new User(id, name, birthday, email, address, telephone);
-            userList.add(user);
+            UserEntity userEntity = new UserEntity(id, name, birthday, email, address, telephone);
+            userList.add(userEntity);
         }
         return  userList;
     }

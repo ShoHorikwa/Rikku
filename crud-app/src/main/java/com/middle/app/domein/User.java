@@ -1,7 +1,10 @@
-package com.middle.CRUDApplication.domein;
+package com.middle.app.domein;
+
+import lombok.Getter;
 
 import java.sql.Date;
 
+@Getter
 public class User {
     private String id;
     private String name;
@@ -17,27 +20,5 @@ public class User {
         this.mail = email;
         this.address = address;
         this.telephone = telephone;
-    }
-
-    public User() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public String getAddress() { return address; }
-
-    public String getTelephone() { return telephone; }
-
-    public String getMail() {
-        return mail;
     }
 }

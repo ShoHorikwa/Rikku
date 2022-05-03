@@ -1,8 +1,6 @@
-package com.middle.CRUDApplication.port;
+package com.middle.app.port;
 
-import com.middle.CRUDApplication.controller.Controller.UserRequestDto;
-import com.middle.CRUDApplication.controller.Controller.UserUpdateDto;
-import com.middle.CRUDApplication.domein.User;
+import com.middle.app.domein.User;
 
 import java.util.List;
 

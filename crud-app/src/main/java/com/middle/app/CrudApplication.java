@@ -1,4 +1,4 @@
-package com.middle.CRUDApplication;
+package com.middle.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

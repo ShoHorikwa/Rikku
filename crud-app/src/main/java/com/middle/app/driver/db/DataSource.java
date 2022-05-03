@@ -1,6 +1,5 @@
-package com.middle.CRUDApplication.driver.db;
+package com.middle.app.driver.db;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

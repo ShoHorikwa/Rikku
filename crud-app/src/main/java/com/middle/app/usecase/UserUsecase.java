@@ -1,11 +1,11 @@
-package com.middle.CRUDApplication.usecase;
+package com.middle.app.usecase;
 
-import com.middle.CRUDApplication.controller.Controller.UserRequestDto;
-import com.middle.CRUDApplication.controller.Controller.UserUpdateDto;
-import com.middle.CRUDApplication.domein.User;
-import com.middle.CRUDApplication.gateway.UserGateway;
-import com.middle.CRUDApplication.port.UserPort;
-import com.middle.CRUDApplication.util.DateUtil;
+import com.middle.app.controller.Controller.UserRequestDto;
+import com.middle.app.controller.Controller.UserUpdateDto;
+import com.middle.app.domein.User;
+import com.middle.app.gateway.UserGateway;
+import com.middle.app.port.UserPort;
+import com.middle.app.util.DateUtil;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,29 +14,27 @@ public class UserUsecase {
 
     UserPort userPort;
 
-    public List<User> select() {
+    public UserUsecase() {
         userPort = new UserGateway();
+    }
+
+    public List<User> select() {
         return userPort.select();
     }
 
     public void insert(UserRequestDto userRequestDto) throws Exception {
-        userPort = new UserGateway();
-
         userPort.insert(toUser(userRequestDto));
     }
 
     public User selectUser(String id) throws Exception {
-        userPort = new UserGateway();
         return userPort.selectUser(id);
     }
 
     public void delete(String id) throws Exception {
-        userPort = new UserGateway();
         userPort.delete(id);
     }
 
     public void update(UserUpdateDto userUpdateDto) throws Exception {
-        userPort = new UserGateway();
         userPort.update(toUser(userUpdateDto));
     }
 

@@ -1,7 +1,7 @@
-package com.middle.CRUDApplication.controller;
+package com.middle.app.controller;
 
-import com.middle.CRUDApplication.domein.User;
-import com.middle.CRUDApplication.usecase.UserUsecase;
+import com.middle.app.domein.User;
+import com.middle.app.usecase.UserUsecase;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +16,21 @@ import java.util.List;
 @org.springframework.stereotype.Controller
 public class Controller {
     UserUsecase userUsecase = new UserUsecase();
+
+    enum MESSAGE {
+        INSERT_SUCCESS("登録に成功しました!!"),
+        DELETE_SUCCESS("削除に成功しました!!"),
+        UPDATE_SUCCESS("更新に成功しました!!"),
+        ;
+        String message;
+
+        MESSAGE(String message) {
+            this.message = message;
+        }
+        public String getMessage() {
+            return this.message;
+        }
+    }
 
     @RequestMapping("/")
     public String init(Model model) {
@@ -133,20 +148,6 @@ public class Controller {
         private String telephone;
     }
 
-    enum MESSAGE {
-        INSERT_SUCCESS("登録に成功しました!!"),
-        DELETE_SUCCESS("削除に成功しました!!"),
-        UPDATE_SUCCESS("更新に成功しました!!"),
-        ;
-        String message;
 
-        MESSAGE(String message) {
-            this.message = message;
-        }
-        public String getMessage() {
-            return this.message;
-        }
-
-    }
 
 }

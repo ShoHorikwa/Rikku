@@ -1,4 +1,4 @@
-package com.middle.CRUDApplication.util;
+package com.middle.app.util;
 
 import java.sql.Date;
 
