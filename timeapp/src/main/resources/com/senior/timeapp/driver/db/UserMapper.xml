@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.senior.timeapp.driver.db.UserMapper">
+
+
+    <select id="countDuplicatedLoginInfo" resultType="int">
+        SELECT
+        COUNT(user_id)
+        FROM user_login WHERE account_name = #{account_name}
+    </select>
+
+    <select id="selectLoginInfo" resultType="com.senior.timeapp.driver.db.entity.LoginInfoEntity">
+        SELECT
+        *
+        FROM user_login WHERE account_name = #{username}
+    </select>
+
+    <select id="select" resultType="com.senior.timeapp.driver.db.entity.UserInfoEntity">
+        SELECT
+            *
+        FROM user_info WHERE user_id = #{id}
+        ORDER BY workday DESC
+    </select>
+
+    <insert id="insertLoginInfo" parameterType="com.senior.timeapp.driver.db.entity.UserInfoEntity">
+        INSERT INTO user_login (user_id, account_name, user_password)
+        VALUES (#{user_id}, #{account_name}, #{user_password});
+    </insert>
+
+    <insert id="insertUserInfo" parameterType="com.senior.timeapp.driver.db.entity.UserInfoEntity">
+        INSERT INTO user_info (user_id, workday, commuting_time, leave_time, break_time, memo)
+        VALUES (#{user_id}, #{workday}, #{commuting_time}, #{leave_time}, #{break_time}, #{memo});
+    </insert>
+
+    <update id="updateCommuteTime" parameterType="com.senior.timeapp.driver.db.entity.UserInfoEntity">
+        UPDATE user_info SET commuting_time = #{date}
+        WHERE user_id = #{id} AND workday = #{workday} AND commuting_time IS NULL
+    </update>
+
+    <update id="updateLeaveTime" parameterType="com.senior.timeapp.driver.db.entity.UserInfoEntity">
+        UPDATE user_info SET leave_time = #{date}
+        WHERE user_id = #{id} AND workday = #{workday} AND leave_time IS NULL
+    </update>
+
+    <select id="selectByIdAndWorkday" resultType="com.senior.timeapp.driver.db.entity.UserInfoEntity">
+        SELECT
+        *
+        FROM user_info WHERE user_id = #{id} AND workday = #{workday}
+        ORDER BY workday DESC
+    </select>
+
+    <update id="updateUserInfo" parameterType="com.senior.timeapp.driver.db.entity.UserInfoEntity">
+        UPDATE user_info SET workday = #{workday}, commuting_time = #{commuting_time}, leave_time= #{leave_time}, break_time= #{break_time}, memo= #{memo}
+        WHERE user_id = #{user_id} AND workday = #{workday}
+    </update>
+</mapper>

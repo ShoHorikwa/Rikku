@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+</head>
+<body>
+<header th:fragment="user_home_header">
+    <nav class="navbar fixed-top  navbar-dark bg-success mb-2">
+        <a th:href="@{/user/info}" class="navbar-brand">[[${title}]]</a>
+        <form role="form" id="logout" th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-success">ログアウト</button>
+        </form>
+    </nav>
+</header>
+</body>
+</html>

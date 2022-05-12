@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>ログイン</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}">
+</head>
+<body class="text-center">
+
+<div class="alert alert-danger" role="alert" th:unless="${#strings.isEmpty(err_message)}">
+    [[${err_message}]]
+</div>
+<div class="alert alert-success" role="alert" th:unless="${#strings.isEmpty(message)}">
+    [[${message}]]
+</div>
+<div class="alert alert-success" role="alert" th:if="${param.logout}">
+    ログアウトしました！！
+</div>
+
+<h1 class="h3 mt-2 mb-3 font-weight-normal">ログイン</h1>
+<form class="w-25 mx-auto" th:action="@{/login}" method="post">
+    <label for="username" class="sr-only"></label>
+    <input class="form-control" id="username"
+           type="text" name="username" placeholder="ユーザID"
+           required autofocus/>
+    <label for="password" class="sr-only"></label>
+    <input class="form-control" id="password"
+           type="password" name="password" placeholder="パスワード"
+           required/>
+    <input class="btn btn-outline-success my-1" type="submit" value="Sign In"/>
+    <a th:href="@{/signUp}" class="btn btn-outline-success my-1">Sign Up</a>
+</form>
+<p class="mt-2 mb-3 text-muted">&copy; 2021</p>
+</body>
+</html>
