@@ -25,15 +25,15 @@ public class UserController {
 
     @GetMapping("/user/select")
     public String selectAll() {
-        List<ResponseDto> responseDtoList = userUsecase.selectAll().stream().map(it -> toResponseDto(it)).collect(Collectors.toUnmodifiableList());
+        List<ResponseDto> responseDtoList = userUsecase.selectAll().stream().map(it -> toResponseDto(it)).collect(Collectors.toList());
         return new Gson().toJson(responseDtoList);
     }
 
     private ResponseDto toResponseDto(User user) {
-       ResponseDto responseDto = new ResponseDto();
-       responseDto.setId(user.getId());
-       responseDto.setName(user.getName());
-       return  responseDto;
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setId(user.getId());
+        responseDto.setName(user.getName());
+        return responseDto;
     }
 
     @Data
