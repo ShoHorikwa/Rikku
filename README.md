@@ -1,5 +1,31 @@
 # Rikku
-CRUD application on spring framework and easy docker image for postgress
+## console-app
+```zsh
+[https://github.com/wipeable-tale/Rikku/tree/main/console-app]
+
+implemented console application that search filerecords which import csv
+
+```
+## crud-app
+```zsh
+[https://github.com/wipeable-tale/Rikku/tree/main/crud-app]
+
+implemented web app that have some functions of CRUD using Mysql on Spring
+
+```
+## time-app
+```zsh
+[https://github.com/wipeable-tale/Rikku/tree/main/timeapp]
+
+implemented web app that is attendance funcitions.
+use Spring,Mysql,MyBatis,SpringSecurity
+```
+## user-api
+```zsh
+[https://github.com/wipeable-tale/Rikku/tree/main/user-api]
+
+RESTful API has functtions of GET request on Spring
+```
 
 ### docker参考サイト
 ```zsh
