@@ -1,5 +1,6 @@
 package com.beginner.userapi.driver;
 
+import com.beginner.userapi.domain.User;
 import com.beginner.userapi.driver.db.UserRepository;
 import com.beginner.userapi.driver.db.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,9 @@ public class UserDriver {
 
     public List<UserEntity> selectAll() {
         return  userRepository.selectAll();
+    }
+
+    public UserEntity selectOneUser(String id) {
+        return  userRepository.selectOneUser(id);
     }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface UserPort {
     List<User> selectAll();
+
+    User selectOneUser(String id);
 }

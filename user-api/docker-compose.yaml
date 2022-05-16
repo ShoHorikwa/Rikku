@@ -1,12 +1,16 @@
-version: "3"
+version: '3'
 
 services:
-  mysql:
-    image: mysql:8
-    environment:
-      -  MYSQL_ROOT_PASSWORD=root
+  mysqldb:
+    container_name: mysql
+    build:
+      context: ./docker
+      dockerfile: DockerFile
+    env_file:
+      - ./db/docker/env/.env
     volumes:
-      - ./db/data:/var/lib/mysql
-      - ./db/initdb.d:/docker-entrypoint-initdb.d
+      - ./db/mysql/data:/var/lib/mysql
+      - ./db/docker/cnf/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db/mysql/sql:/docker-entrypoint-initdb.d
     ports:
-      - "3307:3307"
+      - "3306:3306"

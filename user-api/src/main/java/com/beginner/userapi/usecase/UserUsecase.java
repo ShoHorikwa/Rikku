@@ -15,4 +15,8 @@ public class UserUsecase {
     public List<User> selectAll() {
         return userPort.selectAll();
     }
+
+    public User selectOneUser(String id) {
+        return  userPort.selectOneUser(id);
+    }
 }

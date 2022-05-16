@@ -24,6 +24,11 @@ public class UserGateway  implements UserPort {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public User selectOneUser(String id) {
+        return  toUser(userDriver.selectOneUser(id));
+    }
+
     private User toUser(UserEntity userEntity) {
         User user = new User();
         user.setId(userEntity.getId());
